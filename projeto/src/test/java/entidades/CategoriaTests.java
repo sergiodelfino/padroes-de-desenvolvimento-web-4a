@@ -10,7 +10,7 @@ import jakarta.transaction.Transactional;
 public class CategoriaTests {
     @Test
     @Transactional
-    public void testSalvaUmaCategoriaEBuscaCategoriaSalva(){
+    public void testSalvaUmaCategoria(){
         Categoria categoria = new Categoria();
         categoria.nome = "Doces";
 
