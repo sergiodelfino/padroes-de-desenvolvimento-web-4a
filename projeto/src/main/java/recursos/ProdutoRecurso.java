@@ -33,4 +33,21 @@ public class ProdutoRecurso {
             produto.delete();
         }
     }
+
+    @PUT
+    @Transactional
+    @Path("{codigo}")
+    public void editar (@PathParam("codigo") Integer codigo, Produto produto) {
+        Produto produtoExistente = Produto.findById(codigo);
+
+        if (produtoExistente != null) {
+            produtoExistente.nome = produto.nome;
+            produtoExistente.quantidade = produto.quantidade;
+            produtoExistente.preco = produto.preco;
+            produtoExistente.categoria = produto.categoria;
+            produtoExistente.fabricante = produto.fabricante;
+
+            produtoExistente.persist();
+        }
+    }
 }
