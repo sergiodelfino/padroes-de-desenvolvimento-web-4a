@@ -4,9 +4,11 @@ import java.util.List;
 
 import entidades.Produto;
 import jakarta.transaction.Transactional;
+import jakarta.ws.rs.DELETE;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
+import jakarta.ws.rs.PathParam;
 
 @Path("produtos")
 public class ProdutoRecurso {
@@ -19,5 +21,16 @@ public class ProdutoRecurso {
     @Transactional
     public void salvar(Produto produto) {
         produto.persist();
+    }
+
+    @DELETE
+    @Path("{codigo}")
+    @Transactional
+    public void excluir (@PathParam("codigo") Integer codigo) {
+        Produto produto = Produto.findById(codigo);
+
+        if (produto != null) {
+            produto.delete();
+        }
     }
 }
